@@ -1,4 +1,43 @@
 {
-  "name": "md-links",
-  "version": "0.1.0"
+    "name": "md-links",
+    "version": "0.1.0",
+    "description": "es una libreria",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "eslint": "eslint --ext .js test/",
+        "pretest": "npm run eslint",
+        "start": "node ./index.js",
+        "test": "jest --verbose --coverage",
+        "startmon": "nodemon  ./indexjs"
+
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MariaCristinaTC/LIM014-mdlinks.git"
+    },
+    "keywords": [
+        "nodejs",
+        "mdLinks",
+        "markdown",
+        "language",
+        "javascript"
+    ],
+    "author": "Maria Cristina <mariacristina16tarazona@gmail.com >",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/MariaCristinaTC/LIM014-mdlinks/issues"
+    },
+    "homepage": "https://github.com/MariaCristinaTC/LIM014-mdlinks#readme",
+    "dependencies": {
+        "jest": "^26.6.3",
+        "nodemon": "^2.0.7"
+    },
+    "devDependencies": {
+        "eslint": "^7.21.0",
+        "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-plugin-import": "^2.22.1"
+    }
 }
