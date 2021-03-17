@@ -32,8 +32,10 @@ en formato `Markdown`, para verificar los links que contengan y reportar
 algunas estadísticas.
 
 ![md-links](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
-![md-links](https://ibb.co/2PDBxwQ)
-![md-links](https://ibb.co/z4KpfcB)
+
+[![md-Links-API-1.png](https://i.postimg.cc/ZY3nrMhk/md-Links-API-1.png)](https://postimg.cc/RqSvmGFG)
+
+[![md-Links-CLI-1.png](https://i.postimg.cc/1XRd5dGg/md-Links-CLI-1.png)](https://postimg.cc/ph7Csq1x)
 ## 2. Resumen del proyecto
 
 [Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
