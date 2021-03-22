@@ -35,7 +35,7 @@ algunas estadísticas.
 
 [![md-Links-API-1.png](https://i.postimg.cc/ZY3nrMhk/md-Links-API-1.png)](https://postimg.cc/RqSvmGFG)
 
-[![md-Links-CLI-1.png](https://i.postimg.cc/1XRd5dGg/md-Links-CLI-1.png)](https://postimg.cc/ph7Csq1x)
+[![md-Links-CLI-2.png](https://i.postimg.cc/dQd7ftKt/md-Links-CLI-2.png)](https://postimg.cc/kDJX6C4k)
 ## 2. Resumen del proyecto
 
 [Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
