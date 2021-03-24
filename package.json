@@ -12,7 +12,6 @@
         "start": "node ./index.js",
         "test": "jest --verbose --coverage",
         "startmon": "nodemon  /indexjs"
-
     },
     "repository": {
         "type": "git",
@@ -33,7 +32,8 @@
     "homepage": "https://github.com/MariaCristinaTC/LIM014-mdlinks#readme",
     "dependencies": {
         "jest": "^26.6.3",
-        "nodemon": "^2.0.7"
+        "nodemon": "^2.0.7",
+        "path-exists": "^4.0.0"
     },
     "devDependencies": {
         "eslint": "^7.21.0",
