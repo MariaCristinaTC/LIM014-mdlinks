@@ -1,27 +1,17 @@
-module.exports = () => {
-    // ...
-};
-const fs = require("fs");
 const path = require('path');
-const http = require('http');
-const { Console } = require("console");
-const examplePath = './mdtest/readme.md'; //saving a path as a example
-function validatingAnsolutePath(examplePath) {
-    console.log(path.isAbsolute(examplePath))
-    return path.isAbsolute(examplePath) === true ? examplePath : path.resolve(examplePath) // the conditional ternary operator
-}
-console.log(path.isAbsolute('/test/demo_path.js')); //true
-console.log(path.isAbsolute('test/demo_path.js')); //false
-console.log(path.isAbsolute('C:\\test\\demo_path.js')); //true
+const fs = require('fs')
+const examplePath = 'C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\readme.md';
 
-// try {
-//     if (fs.existsSync(path)) {
-//         //file exists
-//     }
-// } catch (err) {
-//     console.error(err)
-// }
+function validateAbsolutePath(examplePath) {
+    return path.isAbsolute(examplePath) === true ? examplePath : path.resolve(examplePath)
+
+}
+const absolutePath = validateAbsolutePath(examplePath)
+console.log(absolutePath)
 
 function validateIfPathExists(examplePath) {
-    console.log(path)
+    console.log(fs.existsSync(examplePath))
+    return fs.existsSync(examplePath)
 }
+validateIfPathExists(absolutePath)
+console.log(validateIfPathExists(absolutePath))
