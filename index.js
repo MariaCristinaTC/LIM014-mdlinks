@@ -6,6 +6,7 @@ function validateAbsolutePath(examplePath) {
     return path.isAbsolute(examplePath) === true ? examplePath : path.resolve(examplePath)
 
 }
+
 const absolutePath = validateAbsolutePath(examplePath)
 console.log(absolutePath)
 
@@ -37,19 +38,22 @@ const isDir = (examplePath) => {
     return isDirectory;
 }
 
-// example with rocio
 const readDir = (examplePath) => {
-    let allMd = []
-    const dataDir = fs.readdirSync(examplePath);
-    dataDir.forEach((files) => {
-        const filePath = path.join(examplePath, files);
-        if (extensionIdentifier(filePath) === '.md') {
-            allMd.push(filePath);
+        let allMd = []
+        const isItDirectory = fs.statSync(examplePath);
+        if (isItDirectory.isDirectory()) {
+            const directoryObjects = fs.readdirSync(examplePath);
+            directoryObjects.forEach((files) => {
+                const filePath = path.join(examplePath, files);
+                if (extensionIdentifier(filePath) === '.md') {
+                    allMd.push(filePath);
 
-        } else if (isDir(filePath) === true) {
-            allMd = allMd.concat(readDir(filePath));
+                } else if (isDir(filePath) === true) {
+                    allMd = allMd.concat(readDir(filePath));
+                }
+            });
+            return allMd = []
+        } else {
+
+
         }
-    });
-    return allMd = []
-}
-console.log(readDir(examplePath));
