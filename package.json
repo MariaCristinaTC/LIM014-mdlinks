@@ -32,10 +32,11 @@
     "homepage": "https://github.com/MariaCristinaTC/LIM014-mdlinks#readme",
     "dependencies": {
         "jest": "^26.6.3",
+        "markdown-js": "0.0.4",
         "nodemon": "^2.0.7"
     },
     "devDependencies": {
-        "eslint": "^7.21.0",
+        "eslint": "^7.22.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-plugin-import": "^2.22.1"
     }
