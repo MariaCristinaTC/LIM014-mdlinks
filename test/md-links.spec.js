@@ -13,5 +13,5 @@ describe('mdLinks', () => {
     });
     it('return something', () => {
         const data =
-    })
+    });
 });
