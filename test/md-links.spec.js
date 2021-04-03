@@ -1,8 +1,6 @@
-const mdLinks = require('../index.js');
-
+const { validateAbsolutePath, validateIfPathExists, isDir, readDir, readArchive } = require('../index.js');
 
 describe('mdLinks', () => {
-
     it('should validate if the path is absolute...', () => {
         const examplePath = 'C:\\Users\\maria\\Documents\\LIM014-mdlinks\\readme.md';
         expect(validateAbsolutePath(examplePath)).toBe(true)
@@ -11,7 +9,35 @@ describe('mdLinks', () => {
         const examplePath = 'C:\Users\Documents\\LIM014-mdlinks\\readme.md';
         expect(validateAbsolutePath(examplePath)).toBe(false)
     });
-    it('return something', () => {
-        const data =
+});
+describe('Validateifpathexists is a function?', () => {
+    it('should be a function', () => {
+        expect(typeof validateIfPathExists).toBe('function');
     });
+});
+
+describe('isDir is a function', () => {
+    it('should be a function', () => {
+        expect(typeof isDir).toBe('function');
+    });
+    it('return one value', () => {
+        expect(isDir('C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\read-me')).toEqual(true);
+    });
+});
+
+describe('readDir is a function', () => {
+    it('Should be a function', () => {
+        expect(typeof readDir).toBe('function');
+    });
+    it('return one value', () => {
+        expect(readDir('C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\readme.md')).toEqual(['C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\read-me\\read-me.md']);
+    });
+});
+describe('readArchive is a function?', () => {
+    it('should be a function', () => {
+        expect(typeof readArchive).toBe('function');
+    });
+});
+it('return a value', () => {
+    expect(readArchive('C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\holaMundo\\filetext.md')).toEqual('hola mundo');
 });
