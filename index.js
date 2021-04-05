@@ -1,11 +1,13 @@
 const path = require('path');
 const fs = require('fs');
-
-
+const axios = require('axios');
 const examplePath = 'C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test';
+const regexFull = /\[([\w\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
+const regexLink = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
+const regexText = /\[([\w\d.()]+)\]/g;
 
 // is it absolute?
-const absolutePath = (x) => {
+const validateAbsolutePath = (x) => {
         return path.isAbsolute(x) === true ? x : path.resolve(x)
     }
     //console.log(absolutePath(examplePath));
@@ -17,7 +19,7 @@ const validateIfPathExists = (x) => {
     //console.log(validateIfPathExists(examplePath))
 
 
-// Identificar si la  ruta es File o Directorio
+// Identify if its a directory or a file
 const isDir = (examplePath) => {
     const stats = fs.statSync(examplePath);
     const isDirectory = stats.isDirectory(examplePath);
@@ -25,7 +27,7 @@ const isDir = (examplePath) => {
 };
 //console.log(isDir);
 
-// Identificar la extensión del archivo
+// Identify file extension
 const extMD = (examplePath) => path.extname(examplePath);
 //console.log(extMD(examplePath));
 
@@ -46,11 +48,10 @@ const readDir = (x) => {
 //console.log(readDir(examplePath));
 
 
-// Leyendo el archivo
-
+// read each file
 const readFile = (x) => fs.readFileSync(x, 'utf-8');
-// console.log(readArchive(examplePath));
 
+// read every file in a directory
 const joining = (x) => {
     const saveValue = readDir(x)
     const someArrays = [];
@@ -60,28 +61,21 @@ const joining = (x) => {
     })
     return someArrays;
 };
-//console.log(joining(x))
 
 
-// const existsLink = fs.existsSync(examplePath);
-
-const regx = /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
-const regxLink = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
-const regxText = /\[([\w\s\d.()]+)\]/g;
 
 const getMdLinks = (x) => {
     const linksArr = [];
     const directoryObjects = readDir(x);
 
     directoryObjects.forEach((myfile) => {
-        //console.log(myfile)
         const fileRead = fs.readFileSync(myfile, 'utf-8');
-        const links = fileRead.match(regx);
-        //console.log(links)
-        if (links) { // si se llega a encontrar un match
+        const links = fileRead.match(regexFull);
+        if (links) {
             links.forEach((link) => {
-                const myhref = link.match(regxLink).join().slice(1, -1); // con join vuelvo string mi array
-                const mytext = link.match(regxText).join().slice(1, -1); // con el slice corto () []
+                const myhref = link.match(regexLink).join().slice(1, -1);
+                const mytext = link.match(regexText).join().slice(1, -1);
+
                 const linksObj = {
                     href: myhref,
                     text: mytext,
@@ -93,7 +87,16 @@ const getMdLinks = (x) => {
         }
     });
     return linksArr;
-
 };
 
 console.log(getMdLinks(examplePath));
+
+
+module.exports = {
+    validateAbsolutePath,
+    validateIfPathExists,
+    isDir,
+    readDir,
+    readFile,
+    joining
+}

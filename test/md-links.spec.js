@@ -1,4 +1,4 @@
-const { validateAbsolutePath, validateIfPathExists, isDir, readDir, readArchive } = require('../index.js');
+const { validateAbsolutePath, validateIfPathExists, isDir, readDir, readFile } = require('../index.js');
 
 describe('mdLinks', () => {
     it('should validate if the path is absolute...', () => {
@@ -33,9 +33,9 @@ describe('readDir is a function', () => {
         expect(readDir('C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\readme.md')).toEqual(['C:\\Users\\maria\\Documents\\LIM014-mdlinks\\md_test\\read-me\\read-me.md']);
     });
 });
-describe('readArchive is a function?', () => {
+describe('readFile is a function?', () => {
     it('should be a function', () => {
-        expect(typeof readArchive).toBe('function');
+        expect(typeof readFile).toBe('function');
     });
 });
 it('return a value', () => {
