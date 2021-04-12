@@ -1,4 +1,4 @@
-const { validateAbsolutePath, validateIfPathExists, isDir, readDir, readFile } = require('../index.js');
+const { validateAbsolutePath, validateIfPathExists, isDir, readDir, readFile } = require('../src/api.js');
 
 describe('mdLinks', () => {
     it('should validate if the path is absolute...', () => {

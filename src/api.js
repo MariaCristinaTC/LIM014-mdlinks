@@ -7,7 +7,7 @@ const regexLink = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/mg;
 const regexText = /\[([\w\d.()]+)\]/g;
 
 // is it absolute?
-const validateAbsolutePath = (x) => {
+const absolutePath = (x) => {
         return path.isAbsolute(x) === true ? x : path.resolve(x)
     }
     //console.log(absolutePath(examplePath));
@@ -28,7 +28,7 @@ const isDir = (examplePath) => {
 //console.log(isDir);
 
 // Identify file extension
-const extMD = (examplePath) => path.extname(examplePath);
+const extensionMD = (examplePath) => path.extname(examplePath);
 //console.log(extMD(examplePath));
 
 const readDir = (x) => {
@@ -37,7 +37,7 @@ const readDir = (x) => {
     //console.log(directoryObjects);
     directoryObjects.forEach((files) => {
         const filePath = path.join(x, files);
-        if (extMD(filePath) === '.md') {
+        if (extensionMD(filePath) === '.md') {
             allMD.push(filePath);
         } else if (isDir(filePath) === true) {
             allMD = allMD.concat(readDir(filePath));
@@ -46,11 +46,8 @@ const readDir = (x) => {
     return allMD;
 };
 //console.log(readDir(examplePath));
-
-
 // read each file
 const readFile = (x) => fs.readFileSync(x, 'utf-8');
-
 // read every file in a directory
 const joining = (x) => {
     const saveValue = readDir(x)
@@ -88,15 +85,75 @@ const getMdLinks = (x) => {
     });
     return linksArr;
 };
+//console.log(getMdLinks(examplePath));
 
-console.log(getMdLinks(examplePath));
 
+
+
+//Return an extended (validated) link object
+const validatedLink = (object) => axios.get(object.href)
+    .then((response) => {
+        if (response.status == 200) {
+
+            return {
+                href: object.href,
+                text: object.text,
+                file: object.file,
+                Status: response.status,
+                StatusMessage: response.statusText,
+            };
+        }
+    })
+    .catch((error) => {
+        if (error.response) {
+            // console.log('linea 143 ', error);
+            return {
+                href: object.href,
+                text: object.text,
+                file: object.file,
+                Status: error.response.status,
+                StatusMessage: 'FAIL',
+            };
+            // eslint-disable-next-line no-else-return
+        } else {
+            return {
+                href: object.href,
+                text: object.text,
+                file: object.file,
+                Status: 'ERROR LINK',
+                StatusMessage: 'FAIL',
+            };
+        }
+    });
+
+//Return an array of validated link objects
+
+const validatedLinkArray = (linksArray) => {
+    const listLinks = [];
+    linksArray.forEach((x) => {
+        const newObject = validatedLink(x);
+
+        listLinks.push(newObject);
+    });
+
+    return (listLinks);
+};
+
+
+const testObject = {
+    href: 'https://www.google.com',
+    text: 'Google',
+    file: 'myfile',
+};
+
+//console.log(validatedLink(testObject).then((res) => console.log(res)));
 
 module.exports = {
-    validateAbsolutePath,
+    absolutePath,
     validateIfPathExists,
     isDir,
     readDir,
     readFile,
-    joining
+    getMdLinks,
+    validatedLink
 }
