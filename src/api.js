@@ -155,5 +155,6 @@ module.exports = {
     readDir,
     readFile,
     getMdLinks,
-    validatedLink
+    validatedLink,
+    validatedLinkArray
 }

@@ -18,8 +18,13 @@ const mdLinks = (path, option = { validate: false }) => new Promise((resolve, re
         const linksArray = api.getMdLinks(absolutePath);
 
         if (option.validate === true) {
-            const linksArrayValidated = api.validatedLinksArray(linksArray);
-            resolve(Promise.all(linksArrayValidated).then(console.log(linksArrayValidated)))
+            const linksArrayValidated = api.validatedLinkArray(linksArray);
+            resolve(Promise.all(linksArrayValidated));
+
+            //TO SEE IN CONSOLE
+            // Promise.all(linksArrayValidated).then((values) => {
+            //     console.log(values);
+            // });
 
 
         } else {
@@ -28,6 +33,6 @@ const mdLinks = (path, option = { validate: false }) => new Promise((resolve, re
     }
 });
 
-console.log(mdLinks(exampleRelativePath, { validate: true }));
+console.log(mdLinks(exampleAbsolutePath, { validate: true }));
 
 module.exports = mdLinks;
