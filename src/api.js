@@ -106,7 +106,7 @@ const validatedLink = (object) => axios.get(object.href)
     })
     .catch((error) => {
         if (error.response) {
-            // console.log('linea 143 ', error);
+
             return {
                 href: object.href,
                 text: object.text,
@@ -114,7 +114,7 @@ const validatedLink = (object) => axios.get(object.href)
                 Status: error.response.status,
                 StatusMessage: 'FAIL',
             };
-            // eslint-disable-next-line no-else-return
+
         } else {
             return {
                 href: object.href,
@@ -138,16 +138,12 @@ const validatedLinkArray = (linksArray) => {
 
     return (listLinks);
 };
-
-
 const testObject = {
     href: 'https://www.google.com',
     text: 'Google',
     file: 'myfile',
 };
-
 //console.log(validatedLink(testObject).then((res) => console.log(res)));
-
 module.exports = {
     absolutePath,
     validateIfPathExists,
