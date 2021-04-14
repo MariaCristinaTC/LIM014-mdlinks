@@ -31,10 +31,10 @@ const mdLinks = (path, option = { validate: false }) => new Promise((resolve, re
         }
     }
 });
-mdLinks(exampleAbsolutePath, { validate: false })
-.then((values) => {
-    console.log(values);
-}).catch((err) => console.log(err))
+mdLinks(exampleAbsolutePath, { validate: true })
+    .then((values) => {
+        console.log(values);
+    }).catch((err) => console.log(err))
 
 
 module.exports = { mdLinks }
