@@ -8,7 +8,6 @@
     },
     "scripts": {
         "eslint": "eslint --ext .js test/",
-        "pretest": "npm run eslint",
         "start": "node ./src/api.js",
         "test": "jest --verbose --coverage",
         "startmon": "nodemon ./src/index.js"
@@ -25,6 +24,9 @@
         "javascript"
     ],
     "author": "Maria Cristina <mariacristina16tarazona@gmail.com >",
+    "bin": {
+        "md-Links": "./src/CLI.js"
+    },
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/MariaCristinaTC/LIM014-mdlinks/issues"
@@ -32,6 +34,7 @@
     "homepage": "https://github.com/MariaCristinaTC/LIM014-mdlinks#readme",
     "dependencies": {
         "axios": "^0.21.1",
+        "bin": "0.0.0",
         "jest": "^26.6.3",
         "jsdom": "^16.5.2",
         "markdown-js": "0.0.4",

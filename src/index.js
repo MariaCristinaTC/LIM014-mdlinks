@@ -11,9 +11,10 @@ const exampleRelativePath = 'md_test\\holaMundo';
 const mdLinks = (path, option = { validate: false }) => new Promise((resolve, reject) => {
     const absolutePath = api.absolutePath(path);
     const validatePath = api.validateIfPathExists(path);
+    const errorAlert = 'The path is not valid. Try with another one.'
 
     if (validatePath === false) {
-        reject('The path is not valid. Try with another one.');
+        reject(new Error(errorAlert));
     } else {
         const linksArray = api.getMdLinks(absolutePath);
 
@@ -22,17 +23,18 @@ const mdLinks = (path, option = { validate: false }) => new Promise((resolve, re
             resolve(Promise.all(linksArrayValidated));
 
             //TO SEE IN CONSOLE
-            // Promise.all(linksArrayValidated).then((values) => {
-            //     console.log(values);
-            // });
-
-
+            Promise.all(linksArrayValidated).then((values) => {
+                // console.log(values);
+            });
         } else {
             resolve(linksArray);
         }
     }
 });
+mdLinks(exampleAbsolutePath, { validate: false })
+.then((values) => {
+    console.log(values);
+}).catch((err) => console.log(err))
 
-console.log(mdLinks(exampleAbsolutePath, { validate: true }));
 
-module.exports = mdLinks;
+module.exports = { mdLinks }
